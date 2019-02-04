@@ -36,7 +36,7 @@ create a bootable Tails USB drive. Follow the instructions at these
 links and then return to this page:
 
 -  `Download and verify the Tails
-   .iso <https://tails.boum.org/install/download/index.en.html>`__
+   .iso <https://tails.boum.org/install/download-iso/index.en.html>`__
 -  `Install onto a USB
    drive <https://tails.boum.org/install/index.en.html>`__
 

@@ -39,7 +39,7 @@ stick. Here are some links to help you out:
 -  `Install onto a USB stick or SD card`_
 -  `Create & configure the persistent volume`_
 
-.. _`Download and verify the Tails .iso`: https://tails.boum.org/download/index.en.html
+.. _`Download and verify the Tails .iso`: https://tails.boum.org/install/download-iso/index.en.html
 .. _`Install onto a USB stick or SD card`: https://tails.boum.org/doc/first_steps/installation/index.en.html
 .. _`Create & configure the persistent volume`: https://tails.boum.org/doc/first_steps/persistence/configure/index.en.html
 
