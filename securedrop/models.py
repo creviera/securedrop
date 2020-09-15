@@ -15,9 +15,9 @@ from flask import current_app, url_for
 from itsdangerous import TimedJSONWebSignatureSerializer, BadData
 from jinja2 import Markup
 from passlib.hash import argon2
-from sqlalchemy import ForeignKey
+from sqlalchemy import Column, ForeignKey, Integer, MetaData, String, Boolean, DateTime, LargeBinary
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, LargeBinary
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 
 from db import db
@@ -41,6 +41,8 @@ if os.environ.get('SECUREDROP_ENV') == 'test':
 
 ARGON2_PARAMS = dict(memory_cost=2**16, rounds=4, parallelism=2)
 
+metadata = MetaData()
+Base = declarative_base(metadata=metadata)  # type: Any
 
 def get_one_or_else(query: 'Query',
                     logger: 'Logger',
@@ -316,6 +318,14 @@ class SourceStar(db.Model):
     def __init__(self, source: Source, starred: bool = True) -> None:
         self.source_id = source.id
         self.starred = starred
+
+
+class SeenFile(Base):
+    __tablename__ = 'seen_files'
+    file_id = Column(Integer, ForeignKey('file.id'), primary_key=True, cascade="delete")
+    journalist_id = Column(Integer, ForeignKey('journalists.id'), primary_key=True)
+    file_uuid = Column(String(36), nullable=False)
+    journalist_uuid = Column(String(36), nullable=False)
 
 
 class InvalidUsernameException(Exception):
